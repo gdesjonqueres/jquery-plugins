@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Example with plugin autocomplete</title>
+  <link rel="stylesheet" type="text/css" href="autocomplete.css"/>
+  <style type="text/css">
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #header {
+      display: inline-block;
+      border: 1px solid #aaa;
+      padding: 15px;
+      margin: 20px 0;
+      background: #444;
+      font-size: 1.2em;
+    }
+    #header pre {
+      color: #eee;
+    }
+    #header .directions {
+      color: #0af;
+      font-style: italic;
+    }
+    #results {
+      margin-top: 30px;
+      font-size: 1.2em;
+      color: #080;
+      cursor: pointer;
+    }
+    .left, .right {
+      display: inline-block;
+      width: 48%;
+      vertical-align: top;
+    }
+    #available-values {
+      max-height: 300px;
+      overflow: auto;
+      font-size: 0.7em;
+      background: #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header">
+    <pre>Plugin autocomplete
+Brings a list of values to be selected resulting from a user search
+
+Performs an ajax request to get the values from the server</pre>
+    <p class="directions">Type the values to be looked for</p>
+  </div>
+
+  <div>
+
+    <div class="left">
+      <input type="text" id="autocom" placeholder="Search..." autocomplete="off" />
+
+      <button id="results">Print selected values</button>
+    </div>
+
+    <div class="right">
+      Available values to search for:
+      <ul id="available-values">
+        <li>ABARTH</li><li>ABC</li><li>AC</li><li>ACCESS</li><li>ACL</li>
+        <li>ACM</li><li>ACM</li><li>ACMA</li><li>ACMA</li>
+        <li>ACMAT</li><li>ACREA</li><li>ACURA</li>
+        <li>ADIVA</li><li>ADLER</li>
+        <li>ADLY</li><li>AEBI</li><li>AEC</li>
+        <li>AEON</li><li>AERMACCHI</li><li>AGF</li>
+        <li>AGM</li><li>AGRATI</li><li>AGRIP</li>
+        <li>AIE</li><li>AIGLON</li><li>AIRSTREAM</li>
+        <li>AIXAM</li><li>AIYUMO</li><li>AJP</li>
+        <li>AJS</li><li>ALCYON</li><li>ALFAROMEO</li>
+        <li>ALKE</li><li>ALLARD</li><li>ALM.</li>
+        <li>ALMA</li><li>ALPSAITIN</li><li>ALPHA</li>
+        <li>ALQUIER</li><li>ALVIS</li><li>AMAZONE</li>
+        <li>AMERICAN</li><li>AMF</li><li>AMG</li>
+        <li>AMILCAR</li><li>AMS</li><li>ANATOLIA</li>
+        <li>APAL</li><li>APOLLO</li><li>APRILIA</li>
+        <li>APRO</li><li>APTS</li><li>AQUILA</li>
+        <li>ARCTICCAT</li><li>ARCUEILMOT</li>
+      </ul>
+    </div>
+
+  </div>
+  
+  <div id="footer">
+    <script src="../../__shared/vendors/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="../../__shared/base.js"/></script>
+    <script type="text/javascript" charset="UTF-8" src="../autocomplete.js"/></script>
+    
+    <script>
+      //<![CDATA[
+        $(document).ready(function() {
+
+          new GdPlgn.autoComplete('autocom', {
+              "searchUri":"http://localhost/jquery-plugins/autocomplete/demo/ajax/index.php",
+              "minLength": 2
+            });
+
+          $("#results").click(function() {
+            var values = $('#autocom').data("GdPlgnAutoComplete").values();
+            console.log && console.log(values);
+            alert(JSON.stringify(values));
+          });
+        });
+      //]]>
+    </script>
+  </div>
+
+</body>
+</html>

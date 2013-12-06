@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Example with plugin tree</title>
+  <link rel="stylesheet" type="text/css" href="../vendors/tree/tree.css"/>
+  <style type="text/css">
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #header {
+      display: inline-block;
+      border: 1px solid #aaa;
+      padding: 15px;
+      margin: 20px 0;
+      background: #444;
+      font-size: 1.2em;
+    }
+    #header pre {
+      color: #eee;
+    }
+    #header .directions {
+      color: #0af;
+      font-style: italic;
+    }
+    /*.wrapper {
+      display: inline-block;
+      min-height: 200px;
+      max-height: 310px;
+      min-width:400px;
+      overflow: auto;
+      border: 1px solid #000;
+    }*/
+    .bbit-tree-node a span {
+      font-size: 15px;
+    }
+    #results {
+      margin-top: 30px;
+      font-size: 1.2em;
+      color: #080;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">
+    <pre>Plugin to build a tree of selectable nodes
+
+It takes a list of nodes, every selectable node has an id,
+it accepts a list of ids as pre-selection
+
+This plugin is built on top of the jquery plugin "Wd Tree"</pre>
+    <p class="directions">Check a node, a group of nodes or extend a parent</p>
+  </div>
+
+  <div>
+    <div class="wrapper">
+      <div id="myTree" ></div>
+    </div>
+  </div>
+
+  <button id="results">Print selected nodes (JSON)</button>
+
+  <div id="footer">
+    <script src="../../__shared/vendors/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="../vendors/tree/jquery.tree.js"/></script>
+    <script type="text/javascript" charset="UTF-8" src="../tree.js"/></script>
+    
+    <script>
+      //<![CDATA[
+        $(document).ready(function() {
+          new GdPlgn.tree('myTree', [
+              {text: "Node 0", ChildNodes: [
+                  {id: "n00-00", text: "Node 0-0"},
+                  {id: "n00-01", text: "Node 0-1"}
+                ]
+              },
+              {text: "Node 1", ChildNodes: [
+                  {id: "n01-00", text: "Node 1-0"},
+                  {id: "n01-01", text: "Node 1-1"},
+                  {id: "n01-02", text: "Node 1-2"},
+                  {id: "n01-03", text: "Node 1-3"}
+                ]
+              },
+              {text: "Node 2", ChildNodes: [
+                  {id: "n02-00", text: "Node 2-0"},
+                  {text: "Node 2-1", ChildNodes: [
+                      {id: "n02-01-00", text: "Node 2-1-0"},
+                      {id: "n02-01-01", text: "Node 2-1-1"},
+                      {id: "n02-01-02", text: "Node 2-1-2"},
+                    ]
+                  },
+                  {id: "n02-02", text: "Node 2-2"},
+                  {id: "n02-03", text: "Node 2-3"}
+                ]
+              },
+              {text: "Node 3", ChildNodes: [
+                  {id: "n03-00", text: "Node 3-0"},
+                  {id: "n03-01", text: "Node 3-1"},
+                  {id: "n03-02", text: "Node 3-2"},
+                  {id: "n03-03", text: "Node 3-3"}
+                ]
+              }
+            ],
+            ['n01-03', 'n02-01-01']);
+        });
+
+        $('#results').click(function(e) {
+          var values = $('#myTree').data("GdPlgnTree").values();
+          console.log && console.log(values);
+          alert(JSON.stringify(values));
+        });
+      //]]>
+    </script>
+  </div>
+
+</body>
+</html>

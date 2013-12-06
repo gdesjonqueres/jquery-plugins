@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Example with plugin range</title>
+  
+  <link rel="stylesheet" type="text/css" href="../vendors/jquery-ui/jquery-ui-1.10.1.custom.min.css"/>
+  <link rel="stylesheet" type="text/css" href="range.css"/>
+  <style type="text/css">
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #header {
+      display: inline-block;
+      border: 1px solid #aaa;
+      padding: 15px;
+      margin: 20px 0;
+      background: #444;
+      font-size: 1.2em;
+    }
+    #header pre {
+      color: #eee;
+    }
+    #header .directions {
+      color: #0af;
+      font-style: italic;
+    }
+    #results {
+      margin-top: 50px;
+      font-style: italic;
+      color: #080;
+    }
+    #reset {
+      margin-top: 30px;
+      font-size: 1.2em;
+      color: #d00;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header">
+    <pre>Plugin to manage a range of values
+
+It creates a UI component that permits the end user to set a
+minimum and/or maximum value by sliding two handle bars
+
+It's built on top of jquery ui "slider"</pre>
+    <p class="directions">Set the range by sliding the handles</p>
+  </div>
+
+  <div id="myRange" class="slider"></div>
+  <div id="results">No value selected</div>
+  
+  <button id="reset">Reset</button>
+
+  <div id="footer">
+    <script src="../../__shared/vendors/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" charset="" src="../vendors/jquery-ui/jquery-ui-1.10.1.custom.min.js"/></script>
+    <script type="text/javascript" charset="UTF-8" src="../range.js"/></script>
+    
+    <script>
+      //<![CDATA[
+        $(document).ready(function() {
+          
+          $("#myRange").range({
+            "takeBoundValues":false,
+            "range":{
+              "0":"0","20":"20 y/o","30":"30 y/o","40":"40 y/o","50":"50 y/o","60":"60 y/o","70":"70 y/o","80":"more..."
+            },
+            change: function() {
+              var values = $("#myRange").range("toArray"),
+                txt = "";
+                
+              console.log && console.log($("#myRange").range("values"));
+              if (values.lower != null || values.upper !== null) {
+                txt += 'Selected values,';
+                values.lower != null && (txt += ' Min: "' + values.lower.value + '/' + values.lower.label + '"');
+                values.upper != null && (txt += ' Max: "' + values.upper.value + '/' + values.upper.label + '"');
+              }
+              else {
+                txt += 'No value selected';
+              }
+              $("#results").text(txt);
+            }});
+
+            $("#reset").click(function() {
+              $("#myRange").range("values", "lower", 0);
+              $("#myRange").range("values", "upper", 80);
+              $("#results").text("No value selected");
+            });
+        });
+      //]]>
+    </script>
+  </div>
+
+</body>
+</html>
