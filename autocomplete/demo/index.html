@@ -95,8 +95,11 @@ Performs an ajax request to get the values from the server</pre>
       //<![CDATA[
         $(document).ready(function() {
 
+          var uri = "/autocomplete/demo/ajax/index.php";
+          /^\/jquery-plugins\//.test(window.location.pathname) && (uri = "/jquery-plugins" + uri);
+
           new GdPlgn.autoComplete('autocom', {
-              "searchUri":"http://localhost/jquery-plugins/autocomplete/demo/ajax/index.php",
+              "searchUri":uri,
               "minLength": 2
             });
 
