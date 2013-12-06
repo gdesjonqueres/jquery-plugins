@@ -17,7 +17,7 @@ It makes the use of "slider" easier by taking a set of key/value pairs
 (the keys don't need to be integers and no need for a step value) and
 it builds the legend automatically
 
-[click for a demo][http://epinaog.herokuapp.com/range/demo/]
+[See demo](http://epinaog.herokuapp.com/range/demo/)
 
 
 Tree
@@ -30,7 +30,7 @@ it accepts a list of ids as pre-selection
 
 This plugin is built on top of the jquery plugin "Wd Tree"
 
-[click for a demo][http://epinaog.herokuapp.com/tree/demo/]
+[See demo](http://epinaog.herokuapp.com/tree/demo/)
 
 
 
@@ -41,4 +41,4 @@ Brings a list of values to be selected resulting from a user search
 
 Performs an ajax request to get the values from the server
 
-[click for a demo][http://epinaog.herokuapp.com/autocomplete/demo/]
+[See demo](http://epinaog.herokuapp.com/autocomplete/demo/)
