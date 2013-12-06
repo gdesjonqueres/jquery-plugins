@@ -1,0 +1,18 @@
+<?php
+$doNothing = 'do nothing';
+?>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Demo jQuery plugins</title>
+</head>
+<body>
+  List of jQuery plugins, click on link for demo
+  <ul>
+    <li><a href="autocomplete/demo/">AutoComplete</a></li>
+    <li><a href="range/demo/">Range</a></li>
+    <li><a href="tree/demo/">Tree</a></li>
+  </ul>
+</body>
+</html>
